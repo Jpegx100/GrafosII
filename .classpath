@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/collections-generic-4.01.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/colt-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/concurrent-1.3.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/j3d-core-1.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-3d-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-3d-2.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-3d-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-3d-demos-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-3d-demos-2.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-3d-demos-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-algorithms-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-algorithms-2.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-algorithms-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-api-2.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-api-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-api-2.0-tests.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-graph-impl-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-graph-impl-2.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-graph-impl-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-io-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-io-2.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-io-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-jai-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-jai-2.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-jai-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-jai-samples-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-jai-samples-2.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-jai-samples-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-samples-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-samples-2.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-samples-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-visualization-2.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-visualization-2.0.1-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/jung-visualization-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/vecmath-1.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung/wstx-asl-3.2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/collections-generic-4.01.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/colt-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/concurrent-1.3.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/jung-3d-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/jung-3d-demos-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/jung-algorithms-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/jung-api-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/jung-api-2.0-tests.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/jung-graph-impl-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/jung-io-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/jung-jai-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/jung-jai-samples-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/jung-samples-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/jung-visualization-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Patrício/Documents/UFPI/ED II/Jung 2/wstx-asl-3.2.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
