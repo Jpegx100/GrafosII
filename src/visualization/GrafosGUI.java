@@ -21,6 +21,8 @@ import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -48,6 +50,8 @@ import com.sun.corba.se.impl.encoding.CodeSetConversion.BTCConverter;
 
 import java.awt.FlowLayout;
 
+import javax.swing.JScrollPane;
+
 @SuppressWarnings("unused")
 public class GrafosGUI {
 	String maisImpot="";
@@ -66,6 +70,7 @@ public class GrafosGUI {
 	JPanel panel_1;
 	private JPanel panel_3;
 	private JButton btnEncaminhamentos;
+	private JButton btnSalvar;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -109,12 +114,6 @@ public class GrafosGUI {
 		panel_3.setBackground(new Color(245, 245, 245));
 		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Visualiza\u00E7\u00E3o do Grafo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
 		
-		JPanel panel_4 = new JPanel();
-		panel_4.setToolTipText("Pricipais informa\u00E7\u00F5es a \r\nrespeito do grafo, assim \r\ncomo o encaminhamento \r\na partir do vertice escolhido.");
-		panel_4.setOpaque(false);
-		panel_4.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Informa\u00E7\u00F5es", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
-		panel_4.setBackground(new Color(245, 245, 245));
-		
 		JPanel panel_5 = new JPanel();
 		panel_5.setToolTipText("Escolhendo entre os tipos de visualiza\u00E7\u00E3o dispon\u00EDveis \r\npara seu grafo voc\u00EA garante a interpreta\u00E7\u00E3o correta dos \r\ndados apresentados, sejam eles de quaisquer natureza.");
 		panel_5.setOpaque(false);
@@ -128,6 +127,13 @@ public class GrafosGUI {
 		rbKKLayout = new JRadioButton("KKLayout");
 		rbSpringLayout = new JRadioButton("SpringLayout");
 		btGroup = new ButtonGroup();
+		
+		rbCircleLayout.setOpaque(false);
+		rbFRLayout.setOpaque(false);
+		rbFRLayout2.setOpaque(false);
+		rbISOMLayout.setOpaque(false);
+		rbKKLayout.setOpaque(false);
+		rbSpringLayout.setOpaque(false);
 		
 		rbCircleLayout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -226,15 +232,14 @@ public class GrafosGUI {
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addGroup(groupLayout.createSequentialGroup()
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 157, Short.MAX_VALUE))
-					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE)
-						.addComponent(panel_5, GroupLayout.DEFAULT_SIZE, 711, Short.MAX_VALUE))
+						.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 874, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+							.addComponent(panel_5, GroupLayout.PREFERRED_SIZE, 641, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -245,24 +250,15 @@ public class GrafosGUI {
 						.addComponent(panel_5, GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)
 						.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
-						.addComponent(panel_4, GroupLayout.PREFERRED_SIZE, 512, Short.MAX_VALUE))
+					.addComponent(panel_3, GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
 					.addContainerGap())
 		);
-		
-		final JTextArea textArea = new JTextArea();
-		textArea.setMinimumSize(new Dimension(299, 499));
-		textArea.setMaximumSize(new Dimension(300, 500));
-		textArea.setLineWrap(true);
-		textArea.setEditable(false);
-		textArea.setOpaque(false);
-		panel_4.add(textArea);
 
-		JButton btnAbrirArquivo = new JButton("");
+		final JButton btnAbrirArquivo = new JButton("");
+		btnAbrirArquivo.setForeground(new Color(255, 255, 255));
 		btnAbrirArquivo.setMnemonic('o');
 		btnAbrirArquivo.setToolTipText("Abrir grafo de arquivo");
-		btnAbrirArquivo.setBackground(Color.WHITE);
+		btnAbrirArquivo.setBackground(new Color(255, 255, 255));
 		btnAbrirArquivo.setIcon(new ImageIcon(GrafosGUI.class.getResource("/imgs/open131.png")));
 		btnAbrirArquivo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -285,19 +281,117 @@ public class GrafosGUI {
 		btnEncaminhamentos.setMnemonic('e');
 		btnEncaminhamentos.setToolTipText("Exibir encaminhamentos \r\ndo grafo");
 		btnEncaminhamentos.setIcon(new ImageIcon(GrafosGUI.class.getResource("/imgs/ic_action_split.png")));
-		btnEncaminhamentos.setBackground(Color.WHITE);
+		btnEncaminhamentos.setBackground(new Color(255, 255, 255));
 		btnEncaminhamentos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(g!=null){
 					String vert = JOptionPane.showInputDialog("Digite o vertice de início:");
 					if(vert!=null && vert.length()>0){
-						JOptionPane.showMessageDialog(null, g.profundidade(vert));
+						JOptionPane.showMessageDialog(null, g.printProfundidade(vert));
 					}
 				}else{
 					JOptionPane.showMessageDialog(null, "Grafo ainda não gerado!");
 				}
 			}
+			
 		});
+		btnEncaminhamentos.addMouseListener(new MouseListener() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}		
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				btnEncaminhamentos.setOpaque(false);
+				btnEncaminhamentos.setBorderPainted(false);
+			}			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				btnEncaminhamentos.setOpaque(true);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		btnAbrirArquivo.addMouseListener(new MouseListener() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}		
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				btnAbrirArquivo.setOpaque(false);
+				btnAbrirArquivo.setBorderPainted(false);
+			}			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				btnAbrirArquivo.setOpaque(true);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		btnAbrirArquivo.setOpaque(false);
+		btnEncaminhamentos.setOpaque(false);
+		btnAbrirArquivo.setBorderPainted(false);
+		
+		btnSalvar = new JButton("");
+		btnSalvar.setIcon(new ImageIcon(GrafosGUI.class.getResource("/imgs/save.png")));
+		btnSalvar.setToolTipText("Exibir encaminhamentos \r\ndo grafo");
+		btnSalvar.setOpaque(false);
+		btnSalvar.setMnemonic('e');
+		btnSalvar.setBorderPainted(false);
+		btnSalvar.setBackground(Color.WHITE);
+		btnSalvar.addMouseListener(new MouseListener() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}		
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				btnSalvar.setOpaque(false);
+				btnSalvar.setBorderPainted(false);
+			}			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				btnSalvar.setOpaque(true);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		panel_2.add(btnSalvar);
+		btnEncaminhamentos.setBorderPainted(false);
 		panel_2.add(btnEncaminhamentos);
 		frame.getContentPane().setLayout(groupLayout);
 	}

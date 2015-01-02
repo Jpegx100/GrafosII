@@ -1,5 +1,6 @@
 package grafos;
 import java.util.ArrayList;
+import java.util.Collections;
 
 
 public class Vertice {
@@ -7,6 +8,17 @@ public class Vertice {
 	ArrayList<Vertice>arestas;
 	Boolean visitado;
 	int grau;
+	public void profundidade(ArrayList<Vertice> pilha) {
+		Collections.sort(arestas, new ComparaVertices());
+		if(this.visitado==false){
+			this.visitado=true;
+			pilha.add(this);
+			for(Vertice aux:this.arestas){
+				aux.profundidade(pilha);
+			}
+		}
+		
+	}
 	public Vertice(String x){
 		arestas  = new ArrayList<Vertice>();
 		this.inf = x;

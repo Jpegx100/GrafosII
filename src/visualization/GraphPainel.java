@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
 public class GraphPainel extends JPanel{
-	private ImageIcon fundo = new ImageIcon(getClass().getResource("fundo.png"));
+	private ImageIcon fundo = new ImageIcon(getClass().getResource("fundol.jpg"));
 	@Override  
 	protected void paintComponent(Graphics g) {  
 	    super.paintComponent(g);  

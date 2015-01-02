@@ -4,9 +4,13 @@ import java.util.ArrayList;
 
 public class Grafo {
         public ArrayList<Vertice> vertices;
+        public ArrayList<Vertice> pilha;
+        public ArrayList<Vertice> fila;
         
         public Grafo(){
         	vertices = new ArrayList<Vertice>();
+        	pilha = new ArrayList<Vertice>();
+        	fila = new ArrayList<Vertice>();
         }
         public void adiciona(String x){
         	if(this.pesquisa(x)==null){
@@ -40,12 +44,21 @@ public class Grafo {
     			   aux.visitado=false;
     	   }
        }
-       public String profundidade(String init){
+       public void profundidade(String x){
+    	   Vertice aux = pesquisa(x);
+    	   if(aux!=null){
+    		   aux.profundidade(pilha);
+    	   } 
+       }
+       public String printProfundidade(String x){
     	   setNaoVisitado();
-    	   if(pesquisa(init)!=null){
-    		   return "Profundidade:\n" + pesquisa(init).profundidade(""); 
+    	   profundidade(x);
+    	   String s="";
+    	   for(Vertice aux:pilha){
+    		   s+=aux.inf+" - ";
     	   }
-    	   return "ponto nao encontrado";
+    	   pilha = new ArrayList<Vertice>();
+    	   return s;
        }
        public Vertice algumNaoVisitado(Vertice c){
     	   for(Vertice aux:c.arestas){
