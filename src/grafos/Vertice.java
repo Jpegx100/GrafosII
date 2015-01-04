@@ -54,4 +54,17 @@ public class Vertice {
 			}
 		return larg+r;	
 	}
+	public void largura(ArrayList<Vertice> fila, ArrayList<Vertice> ajuda) {
+		for(Vertice aux: this.arestas ){
+			if(aux.visitado==false){
+				fila.add(aux);
+				aux.visitado = true;
+				ajuda.add(aux);
+			}
+			
+		}
+		ajuda.remove(this);
+		if(ajuda.size()==0)	return;
+		ajuda.get(0).largura(fila,ajuda);
+	}
 }

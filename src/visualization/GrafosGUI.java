@@ -1,8 +1,10 @@
 package visualization;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -30,6 +32,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import grafos.ComparaVertices;
 import grafos.Grafo;
 
 import javax.swing.ImageIcon;
@@ -109,7 +112,7 @@ public class GrafosGUI {
 	    panel_2.setBackground(new Color(245, 245, 245));
 	    panel_2.setOpaque(false);
 	    panel_2.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Menu", TitledBorder.LEADING, TitledBorder.TOP, null, Color.DARK_GRAY));
-		panel_3 = new JPanel();
+		panel_3 = new GraphVisualizationPanel();
 		panel_3.setOpaque(false);
 		panel_3.setBackground(new Color(245, 245, 245));
 		panel_3.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Visualiza\u00E7\u00E3o do Grafo", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(64, 64, 64)));
@@ -135,6 +138,13 @@ public class GrafosGUI {
 		rbKKLayout.setOpaque(false);
 		rbSpringLayout.setOpaque(false);
 		
+		rbCircleLayout.addMouseListener(mouseStyle(rbCircleLayout));
+		rbFRLayout.addMouseListener(mouseStyle(rbFRLayout));
+		rbFRLayout2.addMouseListener(mouseStyle(rbFRLayout2));
+		rbISOMLayout.addMouseListener(mouseStyle(rbISOMLayout));
+		rbKKLayout.addMouseListener(mouseStyle(rbKKLayout));
+		rbSpringLayout.addMouseListener(mouseStyle(rbSpringLayout));
+		
 		rbCircleLayout.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(grafoGUI!=null){
@@ -142,7 +152,7 @@ public class GrafosGUI {
 					panel_3.add(geraGraphCircle(grafoGUI));
 					panel_3.revalidate();
 			        panel_3.updateUI();
-			        panel_3.setOpaque(true);
+			        //panel_3.setOpaque(true);
 			        panel_3.setBackground(Color.WHITE);
 				}
 			}
@@ -154,7 +164,7 @@ public class GrafosGUI {
 					panel_3.add(geraGraphFR(grafoGUI));
 					panel_3.revalidate();
 		        	panel_3.updateUI();
-		        	panel_3.setOpaque(true);
+		        	//panel_3.setOpaque(true);
 		        	panel_3.setBackground(Color.WHITE);
 				}
 			}
@@ -166,7 +176,7 @@ public class GrafosGUI {
 					panel_3.add(geraGraphFR2(grafoGUI));
 					panel_3.revalidate();
 		        	panel_3.updateUI();
-		        	panel_3.setOpaque(true);
+		        	//panel_3.setOpaque(true);
 		        	panel_3.setBackground(Color.WHITE);
 				}
 			}
@@ -178,7 +188,7 @@ public class GrafosGUI {
 					panel_3.add(geraGraphISOM(grafoGUI));
 					panel_3.revalidate();
 		        	panel_3.updateUI();
-		        	panel_3.setOpaque(true);
+		        	//panel_3.setOpaque(true);
 		        	panel_3.setBackground(Color.WHITE);
 				}
 			}
@@ -190,7 +200,7 @@ public class GrafosGUI {
 					panel_3.add(geraGraphKk(grafoGUI));
 					panel_3.revalidate();
 		        	panel_3.updateUI();
-		        	panel_3.setOpaque(true);
+		        	//panel_3.setOpaque(true);
 		        	panel_3.setBackground(Color.WHITE);
 				}
 			}
@@ -202,7 +212,7 @@ public class GrafosGUI {
 					panel_3.add(geraGraphSpring(grafoGUI));
 					panel_3.revalidate();
 		        	panel_3.updateUI();
-		        	panel_3.setOpaque(true);
+		        	//panel_3.setOpaque(true);
 		        	panel_3.setBackground(Color.WHITE);
 				}
 			}
@@ -287,7 +297,7 @@ public class GrafosGUI {
 				if(g!=null){
 					String vert = JOptionPane.showInputDialog("Digite o vertice de início:");
 					if(vert!=null && vert.length()>0){
-						JOptionPane.showMessageDialog(null, g.printProfundidade(vert));
+						JOptionPane.showMessageDialog(null, "Profundidade "+g.printProfundidade(vert)+"\nLargura "+g.printLargura(vert));
 					}
 				}else{
 					JOptionPane.showMessageDialog(null, "Grafo ainda não gerado!");
@@ -295,62 +305,8 @@ public class GrafosGUI {
 			}
 			
 		});
-		btnEncaminhamentos.addMouseListener(new MouseListener() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}		
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				btnEncaminhamentos.setOpaque(false);
-				btnEncaminhamentos.setBorderPainted(false);
-			}			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				btnEncaminhamentos.setOpaque(true);
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
-		btnAbrirArquivo.addMouseListener(new MouseListener() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}		
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				btnAbrirArquivo.setOpaque(false);
-				btnAbrirArquivo.setBorderPainted(false);
-			}			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				btnAbrirArquivo.setOpaque(true);
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+		btnEncaminhamentos.addMouseListener(mouseStyle(btnEncaminhamentos));
+		btnAbrirArquivo.addMouseListener(mouseStyle(btnAbrirArquivo));
 		btnAbrirArquivo.setOpaque(false);
 		btnEncaminhamentos.setOpaque(false);
 		btnAbrirArquivo.setBorderPainted(false);
@@ -362,34 +318,7 @@ public class GrafosGUI {
 		btnSalvar.setMnemonic('e');
 		btnSalvar.setBorderPainted(false);
 		btnSalvar.setBackground(Color.WHITE);
-		btnSalvar.addMouseListener(new MouseListener() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}		
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				btnSalvar.setOpaque(false);
-				btnSalvar.setBorderPainted(false);
-			}			
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				btnSalvar.setOpaque(true);
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+		btnSalvar.addMouseListener(mouseStyle(btnSalvar));
 		panel_2.add(btnSalvar);
 		btnEncaminhamentos.setBorderPainted(false);
 		panel_2.add(btnEncaminhamentos);
@@ -438,96 +367,80 @@ public class GrafosGUI {
 			else panel_3.add(geraGraphCircle(grafoGUI));
 			panel_3.revalidate();
 	        panel_3.updateUI();
-	        panel_3.setOpaque(true);
+	        //panel_3.setOpaque(true);
 	        panel_3.setBackground(Color.WHITE);	
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return grafo;
 	}
-	
-	public BasicVisualizationServer<String, String> geraGraphSpring2(DirectedSparseGraph<String, String> grafo){		
-		SpringLayout2<String, String> lay = new SpringLayout2<String, String>(grafo);
-		lay.setSize(new Dimension(650, 450));
-		BasicVisualizationServer<String, String> comp = new BasicVisualizationServer<String, String>(lay);
-		comp.setPreferredSize(new Dimension(650, 450));
+	public BasicVisualizationServer<String, String> geraBSFundoTransparente(AbstractLayout<String, String> lay){
+		Dimension d = new Dimension( (panel_3.getSize().width-panel_3.getSize().width/15), (panel_3.getSize().height-panel_3.getSize().height/10) );;
+		lay.setSize(d);
+		BSFundoTransparente comp = new BSFundoTransparente(lay);
+		comp.setPreferredSize(d);
 		 comp.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<String>());
 		 comp.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);	
 		 comp.getRenderContext().setVertexShapeTransformer( new TransformaFormaVertice());
-		 comp.setBackground(Color.WHITE);
 		 comp.getRenderContext().setVertexFillPaintTransformer(new TransformaCorVertice());
 		return comp;
+	}
+	public BasicVisualizationServer<String, String> geraGraphSpring2(DirectedSparseGraph<String, String> grafo){		
+		SpringLayout2<String, String> lay = new SpringLayout2<String, String>(grafo);
+		return geraBSFundoTransparente(lay);
 	}
 	public BasicVisualizationServer<String, String> geraGraphSpring(DirectedSparseGraph<String, String> grafo){		
 		SpringLayout<String, String> lay = new SpringLayout<String, String>(grafo);
-		lay.setSize(new Dimension(650, 450));
-		BasicVisualizationServer<String, String> comp = new BasicVisualizationServer<String, String>(lay);
-		comp.setPreferredSize(new Dimension(650, 450));
-		 comp.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<String>());
-		 comp.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);	
-		 comp.getRenderContext().setVertexShapeTransformer( new TransformaFormaVertice());
-		 comp.setBackground(Color.WHITE);
-		 comp.getRenderContext().setVertexFillPaintTransformer(new TransformaCorVertice());
-		return comp;
+		return geraBSFundoTransparente(lay);
 	}
 	public BasicVisualizationServer<String, String> geraGraphKk(DirectedSparseGraph<String, String> grafo){		
 		KKLayout<String, String> lay = new KKLayout<String, String>(grafo);
-		lay.setSize(new Dimension(650, 450));
-		BasicVisualizationServer<String, String> comp = new BasicVisualizationServer<String, String>(lay);
-		comp.setPreferredSize(new Dimension(650, 450));
-		 comp.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<String>());
-		 comp.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);	
-		 comp.getRenderContext().setVertexShapeTransformer( new TransformaFormaVertice());
-		 comp.setBackground(Color.WHITE);
-		 comp.getRenderContext().setVertexFillPaintTransformer(new TransformaCorVertice());
-		return comp;
+		return geraBSFundoTransparente(lay);
 	}
 	public BasicVisualizationServer<String, String> geraGraphISOM(DirectedSparseGraph<String, String> grafo){		
 		ISOMLayout<String, String> lay = new ISOMLayout<String, String>(grafo);
-		lay.setSize(new Dimension(650, 450));
-		BasicVisualizationServer<String, String> comp = new BasicVisualizationServer<String, String>(lay);
-		comp.setPreferredSize(new Dimension(650, 450));
-		 comp.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<String>());
-		 comp.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);	
-		 comp.getRenderContext().setVertexShapeTransformer( new TransformaFormaVertice());
-		 comp.setBackground(Color.WHITE);
-		 comp.getRenderContext().setVertexFillPaintTransformer(new TransformaCorVertice());
-		return comp;
+		return geraBSFundoTransparente(lay);
 	}
 	public BasicVisualizationServer<String, String> geraGraphFR2(DirectedSparseGraph<String, String> grafo){		
 		FRLayout2<String, String> lay = new FRLayout2<String, String>(grafo);
-		lay.setSize(new Dimension(650, 450));
-		BasicVisualizationServer<String, String> comp = new BasicVisualizationServer<String, String>(lay);
-		comp.setPreferredSize(new Dimension(650, 450));
-		 comp.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<String>());
-		 comp.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);	
-		 comp.getRenderContext().setVertexShapeTransformer( new TransformaFormaVertice());
-		 comp.setBackground(Color.WHITE);
-		 comp.getRenderContext().setVertexFillPaintTransformer(new TransformaCorVertice());
-		return comp;
+		return geraBSFundoTransparente(lay);
 	}
 	public BasicVisualizationServer<String, String> geraGraphFR(DirectedSparseGraph<String, String> grafo){		
 		FRLayout<String, String> lay = new FRLayout<String, String>(grafo);
-		lay.setSize(new Dimension(650, 450));
-		BasicVisualizationServer<String, String> comp = new BasicVisualizationServer<String, String>(lay);
-		comp.setPreferredSize(new Dimension(650, 450));
-		 comp.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<String>());
-		 comp.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);	
-		 comp.getRenderContext().setVertexShapeTransformer( new TransformaFormaVertice());
-		 comp.setBackground(Color.WHITE);
-		 comp.getRenderContext().setVertexFillPaintTransformer(new TransformaCorVertice());
-		return comp;
+		return geraBSFundoTransparente(lay);
 	}
 	public BasicVisualizationServer<String, String> geraGraphCircle(DirectedSparseGraph<String, String> grafo){		
 		CircleLayout<String, String> lay = new CircleLayout<String, String>(grafo);
-		lay.setSize(new Dimension(650, 450));
-		BasicVisualizationServer<String, String> comp = new BasicVisualizationServer<String, String>(lay);
-		comp.setPreferredSize(new Dimension(650, 450));
-		 comp.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<String>());
-		 comp.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);	
-		 comp.getRenderContext().setVertexShapeTransformer( new TransformaFormaVertice());
-		 comp.setBackground(Color.WHITE);
-		 comp.getRenderContext().setVertexFillPaintTransformer(new TransformaCorVertice());
-		return comp;
+		return geraBSFundoTransparente(lay);
+	}
+	public MouseListener mouseStyle(final AbstractButton comp){
+		return new MouseListener() {
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}		
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				comp.setOpaque(false);
+				comp.setBorderPainted(false);
+			}			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				comp.setOpaque(true);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
 	}
 }

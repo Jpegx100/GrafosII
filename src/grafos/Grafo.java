@@ -66,4 +66,24 @@ public class Grafo {
     	   }
     	   return null;
        }
+       public String printLargura(String x){
+    	   setNaoVisitado();
+    	   largura(x);
+    	   String s="";
+    	   for(Vertice aux:fila){
+    		   s+=aux.inf+" - ";
+    	   }
+    	   fila = new ArrayList<Vertice>();
+    	   return s;
+       }
+       public void largura(String x){
+    	   ArrayList<Vertice> ajuda = new ArrayList<Vertice>();;
+    	   Vertice aux = pesquisa(x);
+    	   if(aux!=null){
+    		   aux.visitado = true;
+    		   ajuda.add(aux);
+    		   fila.add(aux);
+    		   aux.largura(fila,ajuda);
+    	   } 
+       }
 }
