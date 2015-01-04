@@ -1,7 +1,5 @@
 package grafos;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -54,6 +52,8 @@ public class Testes {
 		g.adiciona("X");
 		g.adiciona("W");
 		g.adiciona("B");
+		String[] a = new String[2];
+		Assert.assertEquals(2, a.length);
 		//Assert.assertEquals("B", g.pesquisa("B").inf);
 	}
 	

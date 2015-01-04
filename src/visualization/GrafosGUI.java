@@ -71,7 +71,7 @@ public class GrafosGUI {
 	JPanel panel;
 	private JPanel panel_2;
 	JPanel panel_1;
-	private JPanel panel_3;
+	private static JPanel panel_3;
 	private JButton btnEncaminhamentos;
 	private JButton btnSalvar;
 	
@@ -297,13 +297,16 @@ public class GrafosGUI {
 				if(g!=null){
 					String vert = JOptionPane.showInputDialog("Digite o vertice de início:");
 					if(vert!=null && vert.length()>0){
-						JOptionPane.showMessageDialog(null, "Profundidade "+g.printProfundidade(vert)+"\nLargura "+g.printLargura(vert));
+						Dimension d = new Dimension(850, 300);
+						DirectedSparseGraph<String, String> grafoProf = grafoDeEncaminamento(g.printProfundidade(vert));
+						DirectedSparseGraph<String, String> grafoLarg = grafoDeEncaminamento(g.printLargura(vert));
+						JFrameEncaminhamentos fe = new JFrameEncaminhamentos(geraGraphISOM(grafoProf, d), geraGraphISOM(grafoLarg, d));
+						fe.setVisible(true);
 					}
 				}else{
 					JOptionPane.showMessageDialog(null, "Grafo ainda não gerado!");
 				}
 			}
-			
 		});
 		btnEncaminhamentos.addMouseListener(mouseStyle(btnEncaminhamentos));
 		btnAbrirArquivo.addMouseListener(mouseStyle(btnAbrirArquivo));
@@ -367,7 +370,6 @@ public class GrafosGUI {
 			else panel_3.add(geraGraphCircle(grafoGUI));
 			panel_3.revalidate();
 	        panel_3.updateUI();
-	        //panel_3.setOpaque(true);
 	        panel_3.setBackground(Color.WHITE);	
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -376,6 +378,17 @@ public class GrafosGUI {
 	}
 	public BasicVisualizationServer<String, String> geraBSFundoTransparente(AbstractLayout<String, String> lay){
 		Dimension d = new Dimension( (panel_3.getSize().width-panel_3.getSize().width/15), (panel_3.getSize().height-panel_3.getSize().height/10) );;
+		lay.setSize(d);
+		BSFundoTransparente comp = new BSFundoTransparente(lay);
+		comp.setPreferredSize(d);
+		 comp.getRenderContext().setVertexLabelTransformer(new ToStringLabeller<String>());
+		 comp.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);	
+		 comp.getRenderContext().setVertexShapeTransformer( new TransformaFormaVertice());
+		 comp.getRenderContext().setVertexFillPaintTransformer(new TransformaCorVertice());
+		return comp;
+	}
+	public BasicVisualizationServer<String, String> geraBSFundoTransparente(AbstractLayout<String, String> lay, Dimension a){
+		Dimension d = new Dimension( (a.getSize().width-a.getSize().width/15), (a.getSize().height-a.getSize().height/10) );;
 		lay.setSize(d);
 		BSFundoTransparente comp = new BSFundoTransparente(lay);
 		comp.setPreferredSize(d);
@@ -400,6 +413,10 @@ public class GrafosGUI {
 	public BasicVisualizationServer<String, String> geraGraphISOM(DirectedSparseGraph<String, String> grafo){		
 		ISOMLayout<String, String> lay = new ISOMLayout<String, String>(grafo);
 		return geraBSFundoTransparente(lay);
+	}
+	public BasicVisualizationServer<String, String> geraGraphISOM(DirectedSparseGraph<String, String> grafo, Dimension a){		
+		ISOMLayout<String, String> lay = new ISOMLayout<String, String>(grafo);
+		return geraBSFundoTransparente(lay, a);
 	}
 	public BasicVisualizationServer<String, String> geraGraphFR2(DirectedSparseGraph<String, String> grafo){		
 		FRLayout2<String, String> lay = new FRLayout2<String, String>(grafo);
@@ -442,5 +459,17 @@ public class GrafosGUI {
 				
 			}
 		};
+	}
+	public static Dimension getSizePanel_3(){
+		return panel_3.getSize();
+	}
+	public DirectedSparseGraph<String, String> grafoDeEncaminamento(String prof){
+		DirectedSparseGraph<String, String> grafoT = new DirectedSparseGraph<String, String>();
+		String[] vp = prof.split("-");
+		for(int i=0 ; i<(vp.length-2) ; i++){
+			System.out.println(vp[i]);
+			grafoT.addEdge(vp[i]+"-"+vp[i+1], vp[i], vp[i+1]);
+		}
+		return grafoT;
 	}
 }
