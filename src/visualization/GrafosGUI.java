@@ -65,6 +65,7 @@ public class GrafosGUI {
 	JRadioButton rbKKLayout;
 	JRadioButton rbSpringLayout;
 	ButtonGroup btGroup;
+	JButton btnAbrirArquivo;
 	Grafo g;
 	private JFrame frame;
 	DirectedSparseGraph<String, String> grafoGUI;
@@ -74,6 +75,7 @@ public class GrafosGUI {
 	private static JPanel panel_3;
 	private JButton btnEncaminhamentos;
 	private JButton btnSalvar;
+	private String verticeInicial;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -264,7 +266,7 @@ public class GrafosGUI {
 					.addContainerGap())
 		);
 
-		final JButton btnAbrirArquivo = new JButton("");
+		btnAbrirArquivo = new JButton("");
 		btnAbrirArquivo.setForeground(new Color(255, 255, 255));
 		btnAbrirArquivo.setMnemonic('o');
 		btnAbrirArquivo.setToolTipText("Abrir grafo de arquivo");
@@ -297,14 +299,13 @@ public class GrafosGUI {
 				if(g!=null){
 					String vert = JOptionPane.showInputDialog("Digite o vertice de início:");
 					if(vert!=null && vert.length()>0){
+						verticeInicial = vert;
 						Dimension d = new Dimension(850, 300);
 						DirectedSparseGraph<String, String> grafoProf = grafoDeEncaminamento(g.printProfundidade(vert));
 						DirectedSparseGraph<String, String> grafoLarg = grafoDeEncaminamento(g.printLargura(vert));
 						JFrameEncaminhamentos fe = new JFrameEncaminhamentos(geraGraphISOM(grafoProf, d), geraGraphISOM(grafoLarg, d));
 						fe.setVisible(true);
 					}
-				}else{
-					JOptionPane.showMessageDialog(null, "Grafo ainda não gerado!");
 				}
 			}
 		});
@@ -322,6 +323,34 @@ public class GrafosGUI {
 		btnSalvar.setBorderPainted(false);
 		btnSalvar.setBackground(Color.WHITE);
 		btnSalvar.addMouseListener(mouseStyle(btnSalvar));
+		btnSalvar.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(g!=null){
+					JFileChooser chooser = new JFileChooser();
+					if (chooser.showSaveDialog(null)==JFileChooser.APPROVE_OPTION){
+						String caminho = chooser.getSelectedFile().getAbsolutePath();
+						if(!caminho.equals("")){
+							try {
+								FileWriter file = new FileWriter(caminho+".txt");
+									PrintWriter gravarArq = new PrintWriter(file);
+									gravarArq.println("-------- Largura -------\r\n"+"-- Vertice inicial: "+verticeInicial+" --\r\n"+
+													g.printLargura(verticeInicial).replace(" - ", ";")+
+													"\r\n\r\n----- Profundidade -----\r\n"+"-- Vertice inicial: "+verticeInicial+" --\r\n"+
+															g.printProfundidade(verticeInicial).replace(" - ", ";"));
+									gravarArq.close();
+									file.close();
+							}catch (IOException e) {
+								JOptionPane.showMessageDialog(null, "Falha na gravação do arquivo!");
+								e.printStackTrace();
+							}
+						}
+					}
+				}
+			}
+		});
+		
+		
 		panel_2.add(btnSalvar);
 		btnEncaminhamentos.setBorderPainted(false);
 		panel_2.add(btnEncaminhamentos);
@@ -434,24 +463,21 @@ public class GrafosGUI {
 		return new MouseListener() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
 			}		
 			@Override
 			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
+				comp.setBackground(Color.WHITE);
 				comp.setOpaque(false);
 				comp.setBorderPainted(false);
 			}			
 			@Override
 			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
+				if(comp!=btnAbrirArquivo && g==null)
+					comp.setBackground(new Color(255, 255, 103));
 				comp.setOpaque(true);
 			}
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				
 			}
 			@Override
 			public void mouseReleased(MouseEvent e) {
@@ -465,7 +491,7 @@ public class GrafosGUI {
 	}
 	public DirectedSparseGraph<String, String> grafoDeEncaminamento(String prof){
 		DirectedSparseGraph<String, String> grafoT = new DirectedSparseGraph<String, String>();
-		String[] vp = prof.split("-");
+		String[] vp = prof.split(" - ");
 		for(int i=0 ; i<(vp.length-2) ; i++){
 			System.out.println(vp[i]);
 			grafoT.addEdge(vp[i]+"-"+vp[i+1], vp[i], vp[i+1]);
