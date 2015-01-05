@@ -14,33 +14,39 @@ public class Teste {
 		g.adicionaAresta("a", "c");
 		g.adicionaAresta("b", "a");
 		g.adicionaAresta("b", "c");
-		g.adicionaAresta("b", "e");
-		g.adicionaAresta("c", "a");
+		//g.adicionaAresta("b", "e");
+		//g.adicionaAresta("c", "a");
 		g.adicionaAresta("c", "b");
 		g.adicionaAresta("c", "d");
 		g.adicionaAresta("d", "c");
-		g.adicionaAresta("d", "e");
-		g.adicionaAresta("d", "f");
-		g.adicionaAresta("d", "g");
+		g.adicionaAresta("d", "b");
+		g.adicionaAresta("d", "a");
+		//g.adicionaAresta("d", "f");
+		//g.adicionaAresta("d", "g");
 		g.adicionaAresta("e", "b");
+		g.adicionaAresta("e", "f");
+		g.adicionaAresta("e", "c");
+		g.adicionaAresta("e", "a");
 		g.adicionaAresta("e", "d");
 		g.adicionaAresta("f", "d");
-		g.adicionaAresta("f", "g");
-		g.adicionaAresta("g", "d");
-		g.adicionaAresta("g", "f");
+		g.adicionaAresta("f", "e");
+		g.adicionaAresta("f", "a");
+		g.adicionaAresta("h", "g");
+		g.adicionaAresta("h", "b");
+		g.adicionaAresta("h", "d");
+		g.adicionaAresta("h", "a");
 		g.setNaoVisitado();
-		g.profundidade("a");
 		
+		g.profundidade("h");
 		for(Vertice aux:g.pilha){
 			System.out.println(aux.inf);
 		}
 		System.out.println("---------");
 		g.setNaoVisitado();
-		g.largura("a");
-		
-			
-		
-		
+		g.largura("h");
+		for(Vertice aux:g.fila){
+			System.out.println(aux.inf);
+		}
 	}
 	public void testaPesquisa(){
 		Grafo g = new Grafo();

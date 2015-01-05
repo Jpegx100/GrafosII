@@ -301,6 +301,7 @@ public class GrafosGUI {
 					if(vert!=null && vert.length()>0){
 						verticeInicial = vert;
 						Dimension d = new Dimension(850, 300);
+						System.out.println(g.printProfundidade(vert)+"\n\n"+g.printLargura(vert));
 						DirectedSparseGraph<String, String> grafoProf = grafoDeEncaminamento(g.printProfundidade(vert));
 						DirectedSparseGraph<String, String> grafoLarg = grafoDeEncaminamento(g.printLargura(vert));
 						JFrameEncaminhamentos fe = new JFrameEncaminhamentos(geraGraphISOM(grafoProf, d), geraGraphISOM(grafoLarg, d));
@@ -492,8 +493,7 @@ public class GrafosGUI {
 	public DirectedSparseGraph<String, String> grafoDeEncaminamento(String prof){
 		DirectedSparseGraph<String, String> grafoT = new DirectedSparseGraph<String, String>();
 		String[] vp = prof.split(" - ");
-		for(int i=0 ; i<(vp.length-2) ; i++){
-			System.out.println(vp[i]);
+		for(int i=0 ; i<(vp.length-1) ; i++){
 			grafoT.addEdge(vp[i]+"-"+vp[i+1], vp[i], vp[i+1]);
 		}
 		return grafoT;

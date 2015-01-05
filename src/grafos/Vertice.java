@@ -61,7 +61,6 @@ public class Vertice {
 				aux.visitado = true;
 				ajuda.add(aux);
 			}
-			
 		}
 		ajuda.remove(this);
 		if(ajuda.size()==0)	return;
