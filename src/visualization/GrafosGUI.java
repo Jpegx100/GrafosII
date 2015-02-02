@@ -13,6 +13,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 import edu.uci.ics.jung.algorithms.layout.*;
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
@@ -95,6 +97,7 @@ public class GrafosGUI {
 	}
 	
 	private void initialize() {
+			
 		panel = new JPanel();
 		panel_1 = new JPanel();
 		panel.setOpaque(false);
@@ -385,9 +388,15 @@ public class GrafosGUI {
 			for (String aux : todasLinhas) {
 				String[] linha = aux.split("-");
 				String[] arestas = linha[1].split(";");
-				for (int i = 0; i < arestas.length; i++) {
-					grafo.adicionaAresta(linha[0], arestas[i]);
-					grafoGUI.addEdge(linha[0]+"-"+arestas[i], linha[0], arestas[i]);
+				if(arestas.length>0){
+					for (int i = 0; i < arestas.length; i++) {
+						grafo.adicionaAresta(linha[0], arestas[i]);
+						if(arestas[i].equals(""))
+							grafoGUI.addVertex(linha[0]);
+						else grafoGUI.addEdge(linha[0]+"-"+arestas[i], linha[0], arestas[i]);
+					}
+				}else{
+					grafoGUI.addVertex(linha[0]);
 				}
 			}
 			panel_3.removeAll();
